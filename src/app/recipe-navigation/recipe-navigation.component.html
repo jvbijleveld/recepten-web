@@ -5,9 +5,8 @@
       [opened]="(isHandset$ | async) === false">
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
-      <a mat-list-item href="#">Link 1</a>
-      <a mat-list-item href="#">Link 2</a>
-      <a mat-list-item href="#">Link 3</a>
+      <a mat-list-item routerLink="">Link 1</a>
+      <a mat-list-item routerLink="recipe">Link 2</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -24,6 +23,7 @@
     </mat-toolbar>
 
     <app-recipes />
+    <app-recipe />
 
   </mat-sidenav-content>
 </mat-sidenav-container>

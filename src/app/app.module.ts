@@ -14,12 +14,17 @@ import { MatCardModule } from '@angular/material/card';
 import { MatMenuModule } from '@angular/material/menu';
 import { RecipeNavigationComponent } from './recipe-navigation/recipe-navigation.component';
 import { RecipesComponent } from './recipes/recipes.component';
+import { HttpClientModule} from "@angular/common/http";
+import {RecipesService} from "./recipes/recipes.service";
+import {ApiService} from "./util/api.service";
+import { RecipeComponent } from './recipes/recipe/recipe.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     RecipeNavigationComponent,
-    RecipesComponent
+    RecipesComponent,
+    RecipeComponent,
   ],
   imports: [
     BrowserModule,
@@ -32,9 +37,13 @@ import { RecipesComponent } from './recipes/recipes.component';
     MatIconModule,
     MatListModule,
     MatCardModule,
-    MatMenuModule
+    MatMenuModule,
+    HttpClientModule
   ],
-  providers: [],
+  providers: [
+    ApiService,
+    RecipesService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

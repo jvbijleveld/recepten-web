@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import {recipetList} from "../mocks/recepten-mock";
+import {RecipesService} from "./recipes.service";
+import {Recipe} from "./recipe";
 
 @Component({
   selector: 'app-recipes',
@@ -7,5 +9,15 @@ import {recipetList} from "../mocks/recepten-mock";
   styleUrls: ['./recipes.component.less']
 })
 export class RecipesComponent {
-  recipes = recipetList;
+
+  recipes: Recipe[] = [];
+
+  constructor(private service: RecipesService) {
+    this.getRecipes();
+  }
+
+  getRecipes() {
+    this.service.getRecipes().subscribe(data => this.recipes = data);
+  }
+
 }

@@ -4,7 +4,7 @@ export interface Instruction {
   id: number,
   step: number,
   action: string,
-  instruction?: string,
+  description?: string,
   duration?: number,
   ingredients?: Ingredient[]
 }

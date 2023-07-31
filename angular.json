@@ -69,7 +69,8 @@
               "browserTarget": "recepten-web:build:production"
             },
             "development": {
-              "browserTarget": "recepten-web:build:development"
+              "browserTarget": "recepten-web:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"

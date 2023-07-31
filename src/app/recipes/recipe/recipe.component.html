@@ -1,0 +1,8 @@
+<p>recipe works!</p>
+
+<p>Naam: {{recipe?.name}}</p>
+
+<ul *ngFor="let instruction of recipe?.instructions">
+  <li>{{instruction.description}}</li>
+
+</ul>
