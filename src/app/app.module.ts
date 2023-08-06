@@ -27,6 +27,7 @@ import {
 import {AuthenticateService} from "./util/authenticate.service";
 import { LoginComponent } from './login/login.component';
 import { CreateComponent } from './recipes/create/create.component';
+import {httpInterceptorProviders} from "./util/HttpRequestInterceptor";
 
 @NgModule({
   declarations: [
@@ -57,6 +58,7 @@ import { CreateComponent } from './recipes/create/create.component';
     ApiService,
     RecipesService,
     AuthenticateService,
+    httpInterceptorProviders,
     {
       provide: 'SocialAuthServiceConfig',
       useValue: {

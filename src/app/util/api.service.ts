@@ -11,7 +11,7 @@ export class ApiService {
   get<T>(url: string): Observable<T> {
     let reqHeader = new HttpHeaders({
       'Content-Type': 'application/json',
-      'Authorization': 'Bearer ' + this.authServic.user?.idToken
+      'Authorization': 'Bearer ' + this.authServic.getToken()
     });
     return this.http.get<T>(url, { headers: reqHeader }).pipe(catchError(this.handleError));
   }

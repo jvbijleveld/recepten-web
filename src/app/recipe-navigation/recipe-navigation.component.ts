@@ -19,12 +19,8 @@ export class RecipeNavigationComponent {
       shareReplay()
     );
 
-  signInWithGoogle() {
-    this.authService.signInWithGoogle();
-  }
-
   isLoggedIn() {
-    return this.authService.user?.idToken !== undefined;
+    return this.authService.isLoggedIn()
   }
 
 }
