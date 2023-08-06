@@ -18,6 +18,15 @@ import { HttpClientModule} from "@angular/common/http";
 import {RecipesService} from "./recipes/recipes.service";
 import {ApiService} from "./util/api.service";
 import { RecipeComponent } from './recipes/recipe/recipe.component';
+import {
+  GoogleLoginProvider,
+  GoogleSigninButtonModule,
+  SocialAuthService, SocialAuthServiceConfig,
+  SocialLoginModule
+} from "@abacritt/angularx-social-login";
+import {AuthenticateService} from "./util/authenticate.service";
+import { LoginComponent } from './login/login.component';
+import { CreateComponent } from './recipes/create/create.component';
 
 @NgModule({
   declarations: [
@@ -25,6 +34,8 @@ import { RecipeComponent } from './recipes/recipe/recipe.component';
     RecipeNavigationComponent,
     RecipesComponent,
     RecipeComponent,
+    LoginComponent,
+    CreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -38,12 +49,28 @@ import { RecipeComponent } from './recipes/recipe/recipe.component';
     MatListModule,
     MatCardModule,
     MatMenuModule,
-    HttpClientModule
+    HttpClientModule,
+    SocialLoginModule,
+    GoogleSigninButtonModule
   ],
   providers: [
     ApiService,
-    RecipesService
+    RecipesService,
+    AuthenticateService,
+    {
+      provide: 'SocialAuthServiceConfig',
+      useValue: {
+        autoLogin: false,
+        providers: [
+          {
+            id: GoogleLoginProvider.PROVIDER_ID,
+            provider: new GoogleLoginProvider('139305887902-hv95atfouv29nc40ua4ltsod0timampk.apps.googleusercontent.com')
+          }
+        ]
+      } as SocialAuthServiceConfig,
+    },
   ],
   bootstrap: [AppComponent]
 })
+
 export class AppModule { }

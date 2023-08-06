@@ -1,7 +1,8 @@
-import { Component, inject } from '@angular/core';
-import { BreakpointObserver, Breakpoints } from '@angular/cdk/layout';
-import { Observable } from 'rxjs';
-import { map, shareReplay } from 'rxjs/operators';
+import {Component, inject} from '@angular/core';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
+import {Observable} from 'rxjs';
+import {map, shareReplay} from 'rxjs/operators';
+import {AuthenticateService} from "../util/authenticate.service";
 
 @Component({
   selector: 'app-recipe-navigation',
@@ -10,10 +11,20 @@ import { map, shareReplay } from 'rxjs/operators';
 })
 export class RecipeNavigationComponent {
   private breakpointObserver = inject(BreakpointObserver);
+  private authService: AuthenticateService = inject(AuthenticateService);
 
   isHandset$: Observable<boolean> = this.breakpointObserver.observe(Breakpoints.Handset)
     .pipe(
       map(result => result.matches),
       shareReplay()
     );
+
+  signInWithGoogle() {
+    this.authService.signInWithGoogle();
+  }
+
+  isLoggedIn() {
+    return this.authService.user?.idToken !== undefined;
+  }
+
 }

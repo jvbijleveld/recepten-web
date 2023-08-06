@@ -6,7 +6,7 @@
     <mat-toolbar>Menu</mat-toolbar>
     <mat-nav-list>
       <a mat-list-item routerLink="">Alle Recepten</a>
-      <a mat-list-item routerLink="recipe">Voeg toe</a>
+      <a mat-list-item routerLink="recipe/addç">Voeg toe</a>
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content>
@@ -22,7 +22,9 @@
       <span>recepten-web</span>
     </mat-toolbar>
 
-    <router-outlet></router-outlet>
+    <app-login *ngIf="!isLoggedIn()" />
+
+    <router-outlet *ngIf="isLoggedIn()"></router-outlet>
 
   </mat-sidenav-content>
 </mat-sidenav-container>

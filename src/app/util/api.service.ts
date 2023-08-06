@@ -1,14 +1,19 @@
-import {HttpClient, HttpErrorResponse} from "@angular/common/http";
+import {HttpClient, HttpErrorResponse, HttpHeaders} from "@angular/common/http";
 import {Injectable} from "@angular/core";
 import {catchError, Observable, throwError} from "rxjs";
+import {AuthenticateService} from "./authenticate.service";
 
 @Injectable()
 export class ApiService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private authServic: AuthenticateService, private http: HttpClient) { }
 
   get<T>(url: string): Observable<T> {
-    return this.http.get<T>(url).pipe(catchError(this.handleError));
+    let reqHeader = new HttpHeaders({
+      'Content-Type': 'application/json',
+      'Authorization': 'Bearer ' + this.authServic.user?.idToken
+    });
+    return this.http.get<T>(url, { headers: reqHeader }).pipe(catchError(this.handleError));
   }
 
   private handleError(error: HttpErrorResponse) {
